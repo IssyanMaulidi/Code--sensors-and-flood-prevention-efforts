@@ -1,0 +1,39 @@
+/*
+ * Pemrograman arduino uno dengan bahasa C yang disertai perangkat water sensor
+ * Program Tugas Bahasa Indonesia
+ *
+ * Kelompok 3
+ * Note: Data yang disajikan masih berupa satuan milisecond(ms) dan belum dapat ditampilkan pada display yang memadai seperti-
+ *-pada smart-phone yang kita miliki ataupun paddoc(layar bluetooth) untuk melihat keadaan secara langsung-
+ *-data yang disajikan masih berupa realtime dan menumpuk, sehingga perlunya untuk menyajikan data yang bisa dilihat secara-
+ *-historis seperti untuk mengecek data beberapa waktu lalu untuk dapat memberikan progress penangananan banjir yang memadai.
+ *
+ * Plan: Prototype ini akan kami usahakan menjadi maksimal
+ *
+ * Achmad Rafi Issyan Maulidi
+ */
+
+#define POWER_PIN 7
+#define  SIGNAL_PIN A5
+
+
+int value = 0; // deklarasi variabel
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(POWER_PIN, OUTPUT);   // Pin Digital 7 sbg output
+  digitalWrite(POWER_PIN, LOW); // sensor OFF
+}
+
+void loop() {
+  digitalWrite(POWER_PIN, HIGH);  // sensor Nyala
+  delay(10);                      // Jeda 10ms
+  value = analogRead(SIGNAL_PIN); // membaca nilai (analog) utk sensor
+  digitalWrite(POWER_PIN, LOW);   // sensor OFF
+
+  Serial.print("Sensor value: ");
+  Serial.println(value);
+
+  delay(1000);
+  //Bismillah dapet A biar ngangkat IP semester ini
+}
